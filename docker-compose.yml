@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      network: host
+      context: backend/gateway
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./backend/gateway/src:/home/node/app/src
+      - ./backend/gateway/nodemon.json:/home/node/app/nodemon.json
+    container_name: gateway
+    expose:
+      - '4000'
+    ports:
+      - '4000:4000'
+    command: yarn dev
