@@ -11,4 +11,4 @@ down:
 	docker-compose down
 
 generate-service:
-	python generate-service.py $(name)
+	python generate-service.py
