@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const federationConfig = require("./federation.config");
 const { DefinePlugin } = webpack;
 const { ModuleFederationPlugin } = webpack.container;
 
@@ -42,20 +43,18 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new ModuleFederationPlugin({
-      name: 'widgets',
-      filename: 'widgets.js',
+      name: federationConfig.NAME,
+      filename: federationConfig.FILENAME,
       shared: {
         react: { requiredVersion: deps.react, singleton: true },
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
       },
-      exposes: {
-        './Service': './src/Service',
-      },
+      exposes: federationConfig.EXPOSES,
     }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
-    port: 3002,
+    port: federationConfig.PORT,
   },
 };
