@@ -1,7 +1,7 @@
 import React from 'react';
 import {HashRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
 
-import Todo from 'widgets/Todo';
+import Todo from 'widgets/Service';
 
 export const App = () => {
     return (

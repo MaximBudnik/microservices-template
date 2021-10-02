@@ -26,7 +26,7 @@ module.exports = {
                 library: {type: "var", name: "app"},
                 filename: "remoteEntry.js",
                 exposes: {
-                    "./App": "./src/App",
+                    "./App": "./src/Service",
                 },
                 shared: {
                     ...deps,

@@ -49,7 +49,7 @@ module.exports = {
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
       },
       exposes: {
-        './Todo': './src/App',
+        './Service': './src/Service',
       },
     }),
   ],
