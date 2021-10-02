@@ -1,7 +1,7 @@
 import React from 'react';
 import {HashRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
 
-import Todo from 'widgets/Service';
+import Service from 'service/Service';
 
 export const App = () => {
     return (
@@ -16,7 +16,7 @@ export const App = () => {
             <Router>
                 <Switch>
                     <Route exact path='/'>
-                        <Todo/>
+                        <Service/>
                     </Route>
                 </Switch>
             </Router>

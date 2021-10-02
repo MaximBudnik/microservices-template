@@ -1,7 +1,7 @@
 module.exports = {
-    PORT: 3002,
-    NAME: 'service',
-    FILENAME: 'service.js',
+    PORT: 3001,
+    NAME: 'root',
+    FILENAME: 'root.js',
     EXPOSES: {
         './Service': './src/Service',
     }

@@ -43,14 +43,14 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new ModuleFederationPlugin({
-      name: 'shell',
-      filename: 'shell.js',
+      name: 'root',
+      filename: 'root.js',
       shared: {
         react: { requiredVersion: deps.react, singleton: true },
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
       },
       remotes: {
-        widgets: `widgets@http://localhost:3002/widgets.js`,
+        service: `service@http://localhost:3002/service.js`,
       },
     }),
     new CopyPlugin({
