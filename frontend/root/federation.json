@@ -1,0 +1,11 @@
+{
+  "port": 3001,
+  "name": "root",
+  "filename": "root.js",
+  "exposes": {
+  },
+  "remotes": {
+    "service": "service@http://localhost:3002/service.js"
+  }
+}
+

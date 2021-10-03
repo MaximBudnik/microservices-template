@@ -4,18 +4,36 @@ services:
   root:
     build:
       network: host
-      context: frontend/.root
+      context: frontend/root
       dockerfile: Dockerfile
       target: base
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
     volumes:
-      - ./frontend/.root:/app
+      - ./frontend/root:/app
       - /app/node_modules
     container_name: root
     expose:
       - '3001'
     ports:
       - '3001:3001'
+    command: yarn start
+  service:
+    build:
+      network: host
+      context: frontend/.service-template
+      dockerfile: Dockerfile
+      target: base
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend/.service-template:/app
+      - /app/node_modules
+    container_name: service
+    expose:
+      - '3002'
+    ports:
+      - '3002:3002'
     command: yarn start

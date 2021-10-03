@@ -6,8 +6,7 @@ const { DefinePlugin } = webpack;
 const { ModuleFederationPlugin } = webpack.container;
 
 const deps = require('./package.json').dependencies;
-//  PyMark
-const federationConfig = require("../federation.json").service;
+const federationConfig = require("./federation.json");
 
 module.exports = {
   mode: 'none',
@@ -57,5 +56,10 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
     port: federationConfig.port,
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    watchOptions: {
+      poll: 3000
+    }
   },
 };

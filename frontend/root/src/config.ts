@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {setMicroservices} from "./microservices";
 
 export const config = {
     microservices: {
@@ -13,5 +14,5 @@ export const config = {
                 ...config.microservices,
                 ...remoteConfig.microservices,
             };
-        }),
+        }).then(setMicroservices),
 };

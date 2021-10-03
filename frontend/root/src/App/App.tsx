@@ -3,11 +3,11 @@ import {HashRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
 
 import {LazyService} from "../components/LazyService";
 import {microservices} from "../microservices";
-
+import {config} from "../config";
 export const App = () => {
     return (
         <div>
-            root app
+            root app aboba
             {/*<NavLink exact to='/'>*/}
             {/*    home*/}
             {/*</NavLink>*/}
