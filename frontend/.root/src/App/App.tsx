@@ -1,7 +1,8 @@
 import React from 'react';
 import {HashRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
 
-import Service from 'service/Service';
+import {LazyService} from "../components/LazyService";
+import {microservices} from "../microservices";
 
 export const App = () => {
     return (
@@ -16,7 +17,7 @@ export const App = () => {
             <Router>
                 <Switch>
                     <Route exact path='/'>
-                        <Service/>
+                        <LazyService microservice={microservices.service}/>
                     </Route>
                 </Switch>
             </Router>

@@ -2,11 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const federationConfig = require("./federation.config");
 const { DefinePlugin } = webpack;
 const { ModuleFederationPlugin } = webpack.container;
 
 const deps = require('./package.json').dependencies;
+//  PyMark
+const federationConfig = require("../federation.json").service;
 
 module.exports = {
   mode: 'none',
@@ -43,18 +44,18 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new ModuleFederationPlugin({
-      name: federationConfig.NAME,
-      filename: federationConfig.FILENAME,
+      name: federationConfig.name,
+      filename: federationConfig.filename,
       shared: {
         react: { requiredVersion: deps.react, singleton: true },
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
       },
-      exposes: federationConfig.EXPOSES,
+      exposes: federationConfig.exposes,
     }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
-    port: federationConfig.PORT,
+    port: federationConfig.port,
   },
 };

@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = webpack;
 const { ModuleFederationPlugin } = webpack.container;
 const CopyPlugin = require('copy-webpack-plugin');
-
 const deps = require('./package.json').dependencies;
+//  PyMark
+const federationConfig = require("../federation.json").root;
 
 module.exports = {
   mode: 'none',
@@ -43,15 +44,14 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
     new ModuleFederationPlugin({
-      name: 'root',
-      filename: 'root.js',
+      name: federationConfig.name,
+      filename: federationConfig.filename,
       shared: {
         react: { requiredVersion: deps.react, singleton: true },
         'react-dom': { requiredVersion: deps['react-dom'], singleton: true },
       },
-      remotes: {
-        service: `service@http://localhost:3002/service.js`,
-      },
+      exposes: federationConfig.exposes,
+      remotes: federationConfig.remotes,
     }),
     new CopyPlugin({
       patterns: [
@@ -65,6 +65,6 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
-    port: 3001,
+    port: federationConfig.port,
   },
 };

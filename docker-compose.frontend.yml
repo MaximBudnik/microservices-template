@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  root:
+    build:
+      network: host
+      context: frontend/.root
+      dockerfile: Dockerfile
+      target: base
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend/.root:/app
+      - /app/node_modules
+    container_name: root
+    expose:
+      - '3001'
+    ports:
+      - '3001:3001'
+    command: yarn start

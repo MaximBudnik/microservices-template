@@ -7,8 +7,8 @@ print('Enter service name:')
 serviceName = input()
 templateFolder = './backend/.service-template'
 destinationFolder = './backend/' + serviceName
-dockerComposeFile = './docker-compose.yml'
-dockerComposeProdFile = './docker-compose.prod.yml'
+dockerComposeFile = './docker-compose.backend.yml'
+dockerComposeProdFile = './docker-compose.backend.prod.yml'
 
 
 def copy_template_files():
