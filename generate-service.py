@@ -82,7 +82,7 @@ def update_frontend_docker_compose():
     port = get_port(frontendDockerComposeFile)
     with open(frontendDockerComposeFile, "a") as file:
         file.write("""
-    {0}:
+  {0}:
     build:
       network: host
       context: frontend/{0}
@@ -111,10 +111,10 @@ def update_frontend_docker_compose():
 # update environment.json in root folder
 # update microservices.ts in root folder
 
-if serviceType == 'b':
+if serviceType == "b":
     copy_template_files(backendTemplateFolder, backendDestinationFolder)
     update_backend_docker_compose()
-elif serviceName == 'f':
+elif serviceType == "f":
     copy_template_files(frontendTemplateFolder, frontendDestinationFolder)
     update_frontend_docker_compose()
     frontendPort = get_port(frontendDockerComposeFile)
@@ -136,17 +136,18 @@ elif serviceName == 'f':
     json_object = None
     with open(frontendRootFolder + 'environment.json', "r") as rootEnvironmentJson:
         json_object = load(rootEnvironmentJson)
+    json_object["microservices"][serviceName] = {}
     json_object["microservices"][serviceName]["url"] = "http://localhost:{1}/{0}.js".format(serviceName, frontendPort)
     with open(frontendRootFolder + 'environment.json', "w") as rootEnvironmentJson:
         dump(json_object, rootEnvironmentJson)
 
-    print("Please add folowing code to {0}src/microservices.ts:".format(frontendRootFolder))
+    print("Please add following code to {0}src/microservices.ts:".format(frontendRootFolder))
     print("""
-    {0}: {
+    {0}: {{
             url: config.microservices.{0}.url,
             scope: '{0}',
             module: './Service',
-        }
+        }}
     """.format(serviceName))
 else:
     print('Wrong service type')

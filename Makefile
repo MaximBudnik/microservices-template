@@ -10,5 +10,5 @@ up-prod:
 down:
 	docker-compose down
 
-generate-service:
+generate:
 	python generate-service.py
