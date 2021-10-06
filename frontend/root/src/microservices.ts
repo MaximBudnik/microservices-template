@@ -1,10 +1,9 @@
-/*  This file is auto-generated */
 import {Microservice} from "./components/LazyService/types";
 import {config} from "./config";
 
 export let microservices:{[key:string]:Microservice} = {
 
-}
+} as const
 
 export const setMicroservices = ()=>{
     microservices = {
